@@ -72,4 +72,22 @@ public class UsuarioDAO extends Repository {
         return null;
     }
 
+    public UsuarioTO alterar(UsuarioTO usuarioTO){
+        String sql = "update t_usuario set nm_usuario=?, email_usuario=?, senha_usuario=? where id_usuario=?";
+        try(PreparedStatement ps = getConnection().prepareStatement(sql)){
+            ps.setString(1, usuarioTO.getNomeUsuario());
+            ps.setString(2, usuarioTO.getEmailUsuario());
+            ps.setString(3, usuarioTO.getSenhaUsuario());
+            ps.setInt(4, usuarioTO.getIdUsuario());
+            if (ps.executeUpdate() > 0) {
+                return usuarioTO;
+            }
+        } catch (SQLException e){
+            System.out.println("Erro de SQL: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
 }

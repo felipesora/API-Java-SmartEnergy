@@ -55,4 +55,23 @@ public class UsuarioBO {
         // Sem validações significativas para o metodo de inserir.
         return usuarioDAO.inserir(usuarioTO);
     }
+
+    /**
+     * Altera os dados de um objeto {@link UsuarioTO} no banco de dados.
+     *
+     * <p>
+     * Este método utiliza a instância de {@link UsuarioDAO}
+     * para atualizar o usuário no banco de dados. Não há validações adicionais
+     * ou regras de negócios aplicadas.
+     * </p>
+     *
+     * @param usuarioTO O objeto {@link UsuarioTO} que contém os dados atualizados do usuário.
+     * @return O objeto {@link UsuarioTO} atualizado, caso a operação seja bem-sucedida;
+     *         {@code null} se a operação falhar.
+     */
+    public UsuarioTO alterar(UsuarioTO usuarioTO){
+        usuarioDAO = new UsuarioDAO();
+        // Sem validações significativas para o metodo de alterar.
+        return usuarioDAO.alterar(usuarioTO);
+    }
 }

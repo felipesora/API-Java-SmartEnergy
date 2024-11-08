@@ -43,10 +43,10 @@ public class UsuarioResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response inserir(@Valid UsuarioTO usuario) throws SQLException{
+    public Response inserir(@Valid UsuarioTO usuarioTO) throws SQLException{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Response.ResponseBuilder response = null;
-        UsuarioTO resultado = usuarioBO.inserir(usuario);
+        UsuarioTO resultado = usuarioBO.inserir(usuarioTO);
         if (resultado != null){
             response = Response.created(null); //201 CREATED
         } else {
@@ -55,5 +55,22 @@ public class UsuarioResource {
         response.entity(resultado);
         return response.build();
     }
+
+    @PUT
+    @Path("/{idUsuario}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response alterar(@Valid UsuarioTO usuarioTO, @PathParam("idUsuario") int idUsuario){
+        usuarioTO.setIdUsuario(idUsuario);
+        UsuarioTO resultado = usuarioBO.alterar(usuarioTO);
+        Response.ResponseBuilder response = null;
+        if (resultado != null){
+            response = Response.created(null); // 201 CREATED
+        } else {
+            response = Response.status(400); // BAD REQUEST
+        }
+        response.entity(resultado);
+        return response.build();
+    }
+
 
 }
