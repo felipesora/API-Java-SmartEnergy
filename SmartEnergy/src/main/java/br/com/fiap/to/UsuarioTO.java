@@ -1,9 +1,16 @@
 package br.com.fiap.to;
 
+import jakarta.validation.constraints.NotNull;
+
 public class UsuarioTO {
+
+    @NotNull
     private int idUsuario;
+    @NotNull
     private String nomeUsuario;
+    @NotNull
     private String emailUsuario;
+    @NotNull
     private String senhaUsuario;
 
     public UsuarioTO() {

@@ -3,6 +3,7 @@ package br.com.fiap.bo;
 import br.com.fiap.dao.UsuarioDAO;
 import br.com.fiap.to.UsuarioTO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsuarioBO {
@@ -40,5 +41,18 @@ public class UsuarioBO {
         usuarioDAO = new UsuarioDAO();
         // Sem validações significativas para o metodo de listar pelo ID.
         return usuarioDAO.getById(idUsuario);
+    }
+
+    /**
+     * Insere um novo usuário no banco de dados, verificando previamente se o email já está cadastrado.
+     *
+     * @param usuarioTO Um objeto {@link UsuarioTO} que contém os dados do usuário a ser inserido.
+     * @return O objeto {@link UsuarioTO} inserido no banco de dados, ou {@code null} se o email já estiver cadastrado.
+     * @throws SQLException Se ocorrer um erro durante a operação de inserção no banco de dados.
+     */
+    public UsuarioTO inserir(UsuarioTO usuarioTO) throws SQLException{
+        usuarioDAO = new UsuarioDAO();
+        // Sem validações significativas para o metodo de inserir.
+        return usuarioDAO.inserir(usuarioTO);
     }
 }

@@ -55,4 +55,21 @@ public class UsuarioDAO extends Repository {
         return usuarioTO;
     }
 
+    public UsuarioTO inserir(UsuarioTO usuarioTO){
+        String sql = "INSERT INTO t_usuario (nm_usuario, email_usuario, senha_usuario) VALUES (?,?,?)";
+        try(PreparedStatement ps = getConnection().prepareStatement(sql)){
+            ps.setString(1, usuarioTO.getNomeUsuario());
+            ps.setString(2, usuarioTO.getEmailUsuario());
+            ps.setString(3, usuarioTO.getSenhaUsuario());
+            if (ps.executeUpdate() > 0) {
+                return usuarioTO;
+            }
+        } catch (SQLException e){
+            System.out.println("Erro de SQL: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
 }
