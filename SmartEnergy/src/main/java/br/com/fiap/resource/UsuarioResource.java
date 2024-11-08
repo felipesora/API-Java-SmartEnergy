@@ -72,5 +72,15 @@ public class UsuarioResource {
         return response.build();
     }
 
+    @DELETE
+    @Path("/{idUsuario}")
+    public Response excluir(@PathParam("idUsuario") int idUsuario){
+        if (usuarioBO.excluir(idUsuario)){
+            return Response.status(204).build(); // 204 NO CONTENT
+        } else {
+            return Response.status(404).entity("Usuário não encontrado").build(); // 404 NOT FOUND
+        }
+    }
+
 
 }

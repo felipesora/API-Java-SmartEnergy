@@ -90,4 +90,17 @@ public class UsuarioDAO extends Repository {
         return null;
     }
 
+    public boolean excluir(int IdUsuario){
+        String sql = "delete from t_usuario where id_usuario=?";
+        try(PreparedStatement ps = getConnection().prepareStatement(sql)){
+            ps.setInt(1, IdUsuario);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Erro de SQL ao excluir: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
 }

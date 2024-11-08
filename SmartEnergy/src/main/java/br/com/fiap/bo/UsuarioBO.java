@@ -74,4 +74,22 @@ public class UsuarioBO {
         // Sem validações significativas para o metodo de alterar.
         return usuarioDAO.alterar(usuarioTO);
     }
+
+    /**
+     * Exclui um usuário do banco de dados com base no seu ID.
+     *
+     * <p>
+     * Este método remove um usuário do banco de dados com base no ID fornecido.
+     * Não realiza validações adicionais ou regras de negócios, apenas executa
+     * a exclusão do registro correspondente ao ID informado.
+     * </p>
+     *
+     * @param IdUsuario o ID do usuário que será excluído
+     * @return {@code true} se a exclusão for bem-sucedida, {@code false} caso contrário
+     */
+    public boolean excluir(int IdUsuario){
+        usuarioDAO = new UsuarioDAO();
+        // Sem validações significativas para o metodo de excluir.
+        return usuarioDAO.excluir(IdUsuario);
+    }
 }
