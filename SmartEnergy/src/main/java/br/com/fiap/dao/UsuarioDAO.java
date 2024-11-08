@@ -32,4 +32,27 @@ public class UsuarioDAO extends Repository {
         }
     }
 
+    public UsuarioTO getById(int idUsuario){
+        UsuarioTO usuarioTO = new UsuarioTO();
+        String sql = "select * from t_usuario where id_usuario=?";
+        try(PreparedStatement ps = getConnection().prepareStatement(sql)){
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                usuarioTO.setIdUsuario(rs.getInt("id_usuario"));
+                usuarioTO.setNomeUsuario(rs.getString("nm_usuario"));
+                usuarioTO.setEmailUsuario(rs.getString("email_usuario"));
+                usuarioTO.setSenhaUsuario(rs.getString("senha_usuario"));
+            } else {
+                return null;
+            }
+        } catch (SQLException e){
+            System.out.println("Erro de SQL: " + e.getMessage());
+            return null;
+        } finally {
+            closeConnection();
+        }
+        return usuarioTO;
+    }
+
 }

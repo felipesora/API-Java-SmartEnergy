@@ -24,4 +24,21 @@ public class UsuarioBO {
         // Sem validações significativas para o metodo de listar.
         return usuarioDAO.listarTodos();
     }
+
+    /**
+     * Retorna as informações de um usuário com base no seu ID.
+     * <p>
+     * Este método consulta o banco de dados para obter os dados do usuário correspondente ao ID fornecido.
+     * Não há regras de negócios adicionais aplicadas na visualização.
+     * </p>
+     *
+     * @param idUsuario o ID do usuário que se deseja visualizar.
+     * @return um objeto {@link UsuarioTO} contendo as informações do usuário,
+     *         ou {@code null} se o usuário não for encontrado.
+     */
+    public UsuarioTO getById (int idUsuario){
+        usuarioDAO = new UsuarioDAO();
+        // Sem validações significativas para o metodo de listar pelo ID.
+        return usuarioDAO.getById(idUsuario);
+    }
 }
