@@ -36,7 +36,21 @@ public class DadosConsumoDAO extends Repository{
 
     public ArrayList<DadosConsumoTO> getById(int idUsuario) {
         ArrayList<DadosConsumoTO> listaDadosConsumo = new ArrayList<>();
-        String sql = "select * from t_dados_consumo where id_usuario=?";
+        String sql = "SELECT * FROM t_dados_consumo WHERE id_usuario=? ORDER BY " +
+                "CASE mes_consumo " +
+                "WHEN 'Janeiro' THEN 1 " +
+                "WHEN 'Fevereiro' THEN 2 " +
+                "WHEN 'Março' THEN 3 " +
+                "WHEN 'Abril' THEN 4 " +
+                "WHEN 'Maio' THEN 5 " +
+                "WHEN 'Junho' THEN 6 " +
+                "WHEN 'Julho' THEN 7 " +
+                "WHEN 'Agosto' THEN 8 " +
+                "WHEN 'Setembro' THEN 9 " +
+                "WHEN 'Outubro' THEN 10 " +
+                "WHEN 'Novembro' THEN 11 " +
+                "WHEN 'Dezembro' THEN 12 " +
+                "END ASC";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
