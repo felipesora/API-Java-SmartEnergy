@@ -90,11 +90,21 @@ public class UsuarioDAO extends Repository {
         return null;
     }
 
-    public boolean excluir(int IdUsuario){
-        String sql = "delete from t_usuario where id_usuario=?";
-        try(PreparedStatement ps = getConnection().prepareStatement(sql)){
-            ps.setInt(1, IdUsuario);
-            return ps.executeUpdate() > 0;
+    public boolean excluir(int idUsuario) {
+        String deleteConsumoSQL = "DELETE FROM t_dados_consumo WHERE id_usuario = ?";
+        String deleteUsuarioSQL = "DELETE FROM t_usuario WHERE id_usuario = ?";
+
+        try (PreparedStatement psConsumo = getConnection().prepareStatement(deleteConsumoSQL);
+             PreparedStatement psUsuario = getConnection().prepareStatement(deleteUsuarioSQL)) {
+
+            // Exclua os dados de consumo primeiro
+            psConsumo.setInt(1, idUsuario);
+            psConsumo.executeUpdate();
+
+            // Em seguida, exclua o usuário
+            psUsuario.setInt(1, idUsuario);
+            return psUsuario.executeUpdate() > 0;
+
         } catch (SQLException e) {
             System.out.println("Erro de SQL ao excluir: " + e.getMessage());
         } finally {
@@ -102,5 +112,6 @@ public class UsuarioDAO extends Repository {
         }
         return false;
     }
+
 
 }
