@@ -43,14 +43,16 @@ public class UsuarioResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response inserir(@Valid UsuarioTO usuarioTO) throws SQLException{
+    public Response inserir(@Valid UsuarioTO usuarioTO) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Response.ResponseBuilder response = null;
+
+        // Chama o método de inserção e verifica se retornou null, o que significa que o email já existe
         UsuarioTO resultado = usuarioBO.inserir(usuarioTO);
-        if (resultado != null){
-            response = Response.created(null); //201 CREATED
+        if (resultado != null) {
+            response = Response.created(null); // 201 CREATED
         } else {
-            response = Response.status(400); // BAD REQUEST
+            response = Response.status(400).entity("Email já cadastrado."); // 400 BAD REQUEST
         }
         response.entity(resultado);
         return response.build();

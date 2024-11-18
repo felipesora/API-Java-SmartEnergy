@@ -113,5 +113,18 @@ public class UsuarioDAO extends Repository {
         return false;
     }
 
+    public boolean emailExistente(String email) {
+        String sql = "SELECT 1 FROM t_usuario WHERE email_usuario = ?";
+        try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();  // Retorna true se encontrar o email
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar email: " + e.getMessage());
+        }
+        return false;
+    }
+
 
 }

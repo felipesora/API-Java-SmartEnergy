@@ -50,9 +50,15 @@ public class UsuarioBO {
      * @return O objeto {@link UsuarioTO} inserido no banco de dados, ou {@code null} se o email já estiver cadastrado.
      * @throws SQLException Se ocorrer um erro durante a operação de inserção no banco de dados.
      */
-    public UsuarioTO inserir(UsuarioTO usuarioTO) throws SQLException{
+    public UsuarioTO inserir(UsuarioTO usuarioTO) throws SQLException {
         usuarioDAO = new UsuarioDAO();
-        // Sem validações significativas para o metodo de inserir.
+
+        // Verificar se o email já está cadastrado
+        if (usuarioDAO.emailExistente(usuarioTO.getEmailUsuario())) {
+            // Se o email já existir, não permite a inserção
+            return null;
+        }
+
         return usuarioDAO.inserir(usuarioTO);
     }
 
