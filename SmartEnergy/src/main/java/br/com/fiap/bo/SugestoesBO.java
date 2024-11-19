@@ -2,7 +2,6 @@ package br.com.fiap.bo;
 
 import br.com.fiap.dao.SugestoesDAO;
 import br.com.fiap.to.SugestoesTO;
-import br.com.fiap.to.UsuarioTO;
 
 import java.util.ArrayList;
 

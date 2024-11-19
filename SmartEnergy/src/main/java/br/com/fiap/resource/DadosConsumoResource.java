@@ -1,11 +1,8 @@
 package br.com.fiap.resource;
 
 import br.com.fiap.bo.DadosConsumoBO;
-import br.com.fiap.bo.UsuarioBO;
 import br.com.fiap.dao.DadosConsumoDAO;
-import br.com.fiap.dao.UsuarioDAO;
 import br.com.fiap.to.DadosConsumoTO;
-import br.com.fiap.to.UsuarioTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

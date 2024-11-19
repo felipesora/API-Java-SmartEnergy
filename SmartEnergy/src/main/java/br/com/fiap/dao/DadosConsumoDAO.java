@@ -1,7 +1,6 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.to.DadosConsumoTO;
-import br.com.fiap.to.UsuarioTO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -2,7 +2,6 @@ package br.com.fiap.resource;
 
 import br.com.fiap.bo.SugestoesBO;
 import br.com.fiap.to.SugestoesTO;
-import br.com.fiap.to.UsuarioTO;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
