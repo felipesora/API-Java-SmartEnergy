@@ -51,12 +51,13 @@ public class UsuarioResource {
         UsuarioTO resultado = usuarioBO.inserir(usuarioTO);
         if (resultado != null) {
             response = Response.created(null); // 201 CREATED
+            response.entity(resultado);
         } else {
-            response = Response.status(400).entity("Email já cadastrado."); // 400 BAD REQUEST
+            response = Response.status(400).entity("{\"message\":\"Email já cadastrado.\"}"); // 400 BAD REQUEST
         }
-        response.entity(resultado);
         return response.build();
     }
+
 
     @PUT
     @Path("/{idUsuario}")
